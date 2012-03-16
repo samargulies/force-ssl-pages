@@ -54,7 +54,7 @@ add_action('save_post', 'force_ssl_save_post');
 
 function force_ssl_redirect_page() {
 	if( true == get_post_meta(get_the_ID(), 'force_ssl', true) && !is_ssl() ) {
-		wp_safe_redirect("https://" . $_SERVER["SERVER_NAME"] . ($_SERVER["SERVER_PORT"] != 80 ? ":".$_SERVER["SERVER_PORT"] : "") . $_SERVER["REQUEST_URI"] );
+		wp_safe_redirect("https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] );
 		exit;
 	}
 }
